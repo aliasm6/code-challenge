@@ -11,7 +11,7 @@
 
 #### outputs: rendered HTML on page
 
-### edge cases: very deeply nested JSON and adding html with classes as well as CSS framework syntax
+#### edge cases: very deeply nested JSON and adding html with classes as well as CSS framework syntax
 
 ### 2. Devise a plan
 
