@@ -22,5 +22,11 @@
 
 ### 3. Carry Out the plan
 
+See Deployed Version
+https://aliasm6.github.io/code-challenge/
 
 ### 4. Look back
+
+1. Consider places where refactoring is possible
+1. Talk about the code out loud
+1. Think of alternative ways to solve problem 
