@@ -1,31 +1,30 @@
 (function() {
   'use strict';
-
-  $('#files').on('change', function(event) {
-    console.log(event.target);
-    var file = event.target.files[0];
-    console.log(file)
-
-    var reader = new FileReader();
-
-    reader.onload = (function(theFile) {
+  $('#files').on('change', (event) => {
+    $('#rendered').empty();
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.onload = ((theFile) => {
       return function(e) {
-        console.log('this is the result of e:', e)
-        JSON.parse(e.target.result);
+        let arrayJSON = JSON.parse(e.target.result);
+        let renderedHTML = findTheEnd(arrayJSON);
+        $('#rendered').append(renderedHTML);
       }
     })(file)
-    reader.readAsText(file)
+    function findTheEnd(contentArray) {
+      while (Array.isArray(contentArray)) {
+        return contentArray.map(findTheEnd).join('');
+      }
+      let tag = contentArray.tag;
+      let content = contentArray.content;
+      if(typeof content === "string") {
+        return `<${tag}>${content}</${tag}>`;
+      }
+      else {
+        return `<${tag}>` + findTheEnd(content) + `</${tag}>`;
+      }
+    }
+    reader.readAsText(file);
   });
-
-  // function handleFileSelect(evt) {
-  //   console.log('function firing')
-  //   var files = evt.target.files[0]; // FileList object
-  //   var reader = new FileReader();
-  //   reader.onload = ((theFile) => {
-  //     console.log(theFile);
-  //   })
-  //   reader.onload()
-  // }
-
 
 }());
